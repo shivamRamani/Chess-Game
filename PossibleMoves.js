@@ -64,7 +64,7 @@ export const getPossibleMoves = (id) => {
         } else if (type == "BP") {
             moves = BlackPawn(parseInt(id[0]), parseInt(id[1]));
         } else if (type == "WP") {
-            moves = WightPawn(parseInt(id[0]), parseInt(id[1]));
+            moves = WhitePawn(parseInt(id[0]), parseInt(id[1]));
         } else if (type[1] == "K") {
             moves = KingMove(parseInt(id[0]), parseInt(id[1]), type);
         }
@@ -207,7 +207,7 @@ const BlackPawn = (x, y) => {
     return moves;
 };
 
-const WightPawn = (x, y) => {
+const WhitePawn = (x, y) => {
     let moves = [];
 
     if (legal(x - 1, y - 1, "WN") && hasOponentsPiece(x - 1, y - 1, "WP")) {
@@ -254,10 +254,10 @@ const KingMove = (x, y, type) => {
             moves.push(`06`);
         }
     } else {
-        if (Castling.wightQueenSide&&isEmpty(["71","72","73"])&&notAttacked(["71","72","73"],"B")) {
+        if (Castling.WhiteQueenSide&&isEmpty(["71","72","73"])&&notAttacked(["71","72","73"],"B")) {
             moves.push(`72`);
         }
-        if (Castling.wightKingSide&&isEmpty(["75","76"])&&notAttacked(["75","76"],"B")) {
+        if (Castling.WhiteKingSide&&isEmpty(["75","76"])&&notAttacked(["75","76"],"B")) {
             moves.push(`76`);
         }
     }

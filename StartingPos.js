@@ -8,12 +8,12 @@ export const pieces={
     BB: '<img id="BB" class="icons" src="icons/BlackBishop.png">',
     BN: '<img id="BN" class="icons" src="icons/BlackKnight.png">',
     BP: '<img id="BP" class="icons" src="icons/BlackPawn.png">',
-    WK: '<img id="WK" class="icons" src="icons/WightKing.png">',
-    WQ: '<img id="WQ" class="icons" src="icons/WightQueen.png">',
-    WR: '<img id="WR" class="icons" src="icons/WightRook.png">',
-    WB: '<img id="WB" class="icons" src="icons/WightBishop.png">',
-    WN: '<img id="WN" class="icons" src="icons/WightKnight.png">',
-    WP: '<img id="WP" class="icons" src="icons/WightPawn.png">',
+    WK: '<img id="WK" class="icons" src="icons/WhiteKing.png">',
+    WQ: '<img id="WQ" class="icons" src="icons/WhiteQueen.png">',
+    WR: '<img id="WR" class="icons" src="icons/WhiteRook.png">',
+    WB: '<img id="WB" class="icons" src="icons/WhiteBishop.png">',
+    WN: '<img id="WN" class="icons" src="icons/WhiteKnight.png">',
+    WP: '<img id="WP" class="icons" src="icons/WhitePawn.png">',
 
 }
 
@@ -37,7 +37,7 @@ export const StartingPosition = () => {
     }
     for (var i = 0; i < 8; i++) {
         const box = document.getElementById(`6${i}`);
-        box.innerHTML = '<img id="WP" class="icons" src="icons/WightPawn.png">';
+        box.innerHTML = '<img id="WP" class="icons" src="icons/WhitePawn.png">';
     }
 
     for (var i = 0; i < 8; i++) {

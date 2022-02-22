@@ -9,8 +9,8 @@ import {pieces} from "./StartingPos.js"
 export let Castling = {
     blackKingSide: true,
     blackQueenSide: true,
-    wightQueenSide: true,
-    wightKingSide: true,
+    WhiteQueenSide: true,
+    WhiteKingSide: true,
 };
 
 const StartPosition = [
@@ -55,7 +55,7 @@ const gameOver = (type) => {
             if (type[0] == "W") {
                 won = "Black";
             } else {
-                won = "Wight";
+                won = "White";
             }
             alert(`${won} WON`);
         } else {
@@ -111,7 +111,7 @@ const makeMove = {
         }
     },
 
-    castleWight(nextid) {
+    castleWhite(nextid) {
         if (nextid == "72") {
             this.simple("70", "73");
         } else {
@@ -134,16 +134,16 @@ function mark() {
             playersTurn = "B";
             gameOver("BK");
             if (currPiece == "WK") {
-                Castling.wightKingSide = false;
-                Castling.wightQueenSide = false;
+                Castling.WhiteKingSide = false;
+                Castling.WhiteQueenSide = false;
                 if (this.id == "72" || this.id == "76") {
-                    makeMove.castleWight(this.id);
+                    makeMove.castleWhite(this.id);
                 }
             } else if (currPiece == "WR") {
                 if (currSquare == "77") {
-                    Castling.wightKingSide = false;
+                    Castling.WhiteKingSide = false;
                 } else if (currSquare == "70") {
-                    Castling.wightQueenSide = false;
+                    Castling.WhiteQueenSide = false;
                 }
             }
             else if(currPiece=="WP" &&this.id[0]==0){
@@ -220,7 +220,7 @@ const pawnPromotion = (type, id) => {
         
     }
     else{
-        promotionoptions=document.querySelector("#WightPromotionOpton");
+        promotionoptions=document.querySelector("#WhitePromotionOpton");
         promotionoptions.style.display="flex";
 
         let promotionPieces=document.querySelectorAll(".PromotionPiece");
