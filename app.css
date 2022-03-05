@@ -113,22 +113,22 @@ main {
     width: 100%;
 }
 
-.WhiteWinner{
+#WhiteWinner{
     width: min(100vh,100vw);
     border-radius: 25px;
     border: 4px black solid;
     display: none;
+    
     box-shadow: 0px 0px 50px rgba(0,0,0,1);
     background-color: rgb(255, 255, 255);
     position: absolute;
     align-items: center;
     justify-content: space-around;
     font-size: min(14vh,14vw);
-    cursor: default;
-    /* z-index: 10; */
+    
 }
 
-.BlackWinner{
+#BlackWinner{
     width: min(100vh,100vw);
     border-radius: 25px;
     color: rgb(255, 255, 255);
@@ -140,6 +140,18 @@ main {
     align-items: center;
     justify-content: space-around;
     font-size: min(14vh,14vw);
-    cursor: default;
-    /* z-index: 10; */
+}
+
+#Draw{
+    width: min(100vh,100vw);
+    border-radius: 25px;
+    color: rgb(63, 63, 63);
+    border: 4px rgb(117, 117, 117) solid;
+    display: none;
+    box-shadow: 0px 0px 50px rgb(46, 46, 46);
+    background-color: rgb(206, 206, 206);
+    position: absolute;
+    align-items: center;
+    justify-content: space-around;
+    font-size: min(14vh,14vw);
 }

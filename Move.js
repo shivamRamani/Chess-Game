@@ -50,17 +50,18 @@ const gameOver = (type) => {
     }
 
     if (allPossiblemoves.length == 0) {
+        let winner;
         if (!kingCheak(type[0], currPosition)) {
-            let won = "";
             if (type[0] == "W") {
-                won = "Black";
+                winner=document.querySelector("#BlackWinner");
             } else {
-                won = "White";
+                winner=document.querySelector("#WhiteWinner");
             }
-            alert(`${won} WON`);
+
         } else {
-            alert("draw");
+            winner=document.querySelector("#Draw");
         }
+        winner.style.display="flex";
     }
 };
 
@@ -71,7 +72,7 @@ let type = "";
 
 export let resetBoard = () => {
     ClearPreviousMoves();
-
+    clearWinner();
     Object.keys(Castling).forEach((key) => {
         Castling[key] = true;
     });
@@ -81,6 +82,8 @@ export let resetBoard = () => {
             currPosition[i][j] = StartPosition[i][j];
         }
     }
+
+    
 
     playersTurn = "W";
     markedPossiblesquare = [];
@@ -238,3 +241,11 @@ const pawnPromotion = (type, id) => {
         });
     }
 };
+
+const clearWinner=()=>{
+    const result = document.querySelectorAll(".Result");
+
+    result.forEach((element)=>{
+        element.style.display="none";
+    })
+}
