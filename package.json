@@ -1,0 +1,27 @@
+{
+  "name": "chess-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "devStart": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivamRamani/Chess-Game.git"
+  },
+  "author": "Shivam Ramani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shivamRamani/Chess-Game/issues"
+  },
+  "homepage": "https://github.com/shivamRamani/Chess-Game#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "socket.io": "^4.4.1",
+    "socket.io-client": "^4.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
