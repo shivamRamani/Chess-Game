@@ -70,6 +70,7 @@ let playersTurn = "W";
 let markedPossiblesquare = [];
 let currSquare = 0;
 let type = "";
+let socket=io();
 
 export let resetBoard = () => {
     ClearPreviousMoves();
@@ -96,7 +97,8 @@ const markPossibleMoves = (moves) => {
     });
 };
 
-const makeMove = {
+const movePiece = {
+    
     simple(currid, nextid) {
         document.getElementById(nextid).innerHTML =
             document.getElementById(currid).innerHTML;
@@ -124,54 +126,73 @@ const makeMove = {
 
 const square = document.querySelectorAll(".Square");
 
+const makeMove = (currPiece,target)=>{
+
+    let move={
+
+    }
+    // console.log(currPiece);
+
+    movePiece.simple(currSquare, target);
+    if (playersTurn == "W") {
+        playersTurn = "B";
+        gameOver("BK");
+        if (currPiece == "WK") {
+            Castling.WhiteKingSide = false;
+            Castling.WhiteQueenSide = false;
+            if (target == "72" || target == "76") {
+                movePiece.castleWhite(target);
+            }
+        } else if (currPiece == "WR") {
+            if (currSquare == "77") {
+                Castling.WhiteKingSide = false;
+            } else if (currSquare == "70") {
+                Castling.WhiteQueenSide = false;
+            }
+        } else if (currPiece == "WP" && target[0] == 0) {
+            pawnPromotion("WP", target);
+        }
+    } else {
+        playersTurn = "W";
+
+        gameOver("WK");
+        if (currPiece == "BK") {
+            Castling.blackKingSide = false;
+            Castling.blackQueenSide = false;
+
+            if (target == "02" || target == "06") {
+                movePiece.castleBlack(target);
+            }
+        } else if (currPiece == "BR") {
+            if (currSquare == "00") {
+                Castling.blackQueenSide = false;
+            } else if (currSquare == "07") {
+                Castling.blackKingSide = false;
+            }
+        } else if (currPiece == "BP" && target[0] == 7) {
+            console.log("PP", target);
+            pawnPromotion("BP", target);
+        }
+    }
+
+    move.currPiece=currPiece;
+    move.currSquare=currSquare;
+    move.target=target;
+    return move;
+    
+}
+
+
 function mark() {
     ClearPreviousMoves();
-    // console.log("OPPPPPPPPPPPPPPPS",this.id);
+
     if (markedPossiblesquare.includes(this.id)) {
         let currPiece = currPosition[currSquare[0]][currSquare[1]];
+        let target=this.id;
+        let move=makeMove(currPiece,target);
+        socket.emit("move",move);
+        
 
-        makeMove.simple(currSquare, this.id);
-
-        if (playersTurn == "W") {
-            playersTurn = "B";
-            gameOver("BK");
-            if (currPiece == "WK") {
-                Castling.WhiteKingSide = false;
-                Castling.WhiteQueenSide = false;
-                if (this.id == "72" || this.id == "76") {
-                    makeMove.castleWhite(this.id);
-                }
-            } else if (currPiece == "WR") {
-                if (currSquare == "77") {
-                    Castling.WhiteKingSide = false;
-                } else if (currSquare == "70") {
-                    Castling.WhiteQueenSide = false;
-                }
-            } else if (currPiece == "WP" && this.id[0] == 0) {
-                pawnPromotion("WP", this.id);
-            }
-        } else {
-            playersTurn = "W";
-
-            gameOver("WK");
-            if (currPiece == "BK") {
-                Castling.blackKingSide = false;
-                Castling.blackQueenSide = false;
-
-                if (this.id == "02" || this.id == "06") {
-                    makeMove.castleBlack(this.id);
-                }
-            } else if (currPiece == "BR") {
-                if (currSquare == "00") {
-                    Castling.blackQueenSide = false;
-                } else if (currSquare == "07") {
-                    Castling.blackKingSide = false;
-                }
-            } else if (currPiece == "BP" && this.id[0] == 7) {
-                console.log("PP", this.id);
-                pawnPromotion("BP", this.id);
-            }
-        }
         markedPossiblesquare = [];
         currSquare = 0;
     } else {
@@ -241,3 +262,8 @@ const clearWinner = () => {
         element.style.transform = "scale(0)";
     });
 };
+
+socket.on('move', function(move) {
+    currSquare=move.currSquare;
+    makeMove(move.currPiece,move.target);
+});

@@ -10,11 +10,13 @@ const io=require('socket.io')(http);
 
 
 
-io.on('connection', function(socket) {
+
+io.on('connection', function(socket) { 
     console.log('new connection '+socket.id);
 
-    socket.on('message', function(msg) {
-        console.log('Got message from client: ' + msg);     
+    socket.on('move', function(move) {
+        console.log(move);  
+        socket.broadcast.emit('move',move);  
     });
 });
 
