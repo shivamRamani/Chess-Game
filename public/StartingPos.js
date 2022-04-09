@@ -19,6 +19,15 @@ export const pieces={
 
 const piecePosRow=['R','N','B','Q','K','B','N','R'];
 
+const BoardRoatation = () => {
+    document.getElementById('Board').classList.remove('rotate');
+    let icons = document.querySelectorAll('.icons');
+
+    icons.forEach(icon=>{
+        icon.classList.remove('rotate');
+    })
+}
+
 const ClearBoard = () => {
     const chlids = document.querySelectorAll(".Square");
     chlids.forEach((element) => {
@@ -28,6 +37,7 @@ const ClearBoard = () => {
 };
 export const StartingPosition = () => {
     ClearBoard();
+    BoardRoatation();
     resetBoard();
     // console.log(StartPosition,currPosition);
     for (var i = 0; i < 8; i++) {

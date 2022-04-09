@@ -5,6 +5,7 @@ import {
 } from "./PossibleMoves.js";
 import { kingCheak } from "./legalMove.js";
 import { pieces } from "./StartingPos.js";
+import {socket } from "./main.js";
 
 export let Castling = {
     blackKingSide: true,
@@ -70,7 +71,7 @@ let playersTurn = "W";
 let markedPossiblesquare = [];
 let currSquare = 0;
 let type = "";
-let socket=io();
+// export let socket=io();
 
 export let resetBoard = () => {
     ClearPreviousMoves();
@@ -126,7 +127,7 @@ const movePiece = {
 
 const square = document.querySelectorAll(".Square");
 
-const makeMove = (currPiece,target)=>{
+export const makeMove = (currPiece,target)=>{
 
     let move={
 
@@ -263,7 +264,12 @@ const clearWinner = () => {
     });
 };
 
-socket.on('move', function(move) {
+// socket.on('move', function(move) {
+//     currSquare=move.currSquare;
+//     makeMove(move.currPiece,move.target);
+// });
+
+export const handleMove=(move)=>{
     currSquare=move.currSquare;
     makeMove(move.currPiece,move.target);
-});
+};
