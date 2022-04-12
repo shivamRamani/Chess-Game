@@ -9,6 +9,7 @@ let http =require('http').Server(app);
 const io=require('socket.io')(http);
 
 const rooms={};
+const currRooms=[];
 let roomClients={};
 
 io.on('connection', function(socket) { 
@@ -25,6 +26,7 @@ io.on('connection', function(socket) {
     socket.on("creatGame",()=>{
         let code=uuidv4();
         rooms[socket.id]=code;
+        currRooms.push(code);
         roomClients[code]=1;
         socket.join(code);
         socket.emit("gameCode",code);
@@ -34,17 +36,26 @@ io.on('connection', function(socket) {
     });
 
     socket.on("joinGame",(code)=>{
-        let clients=Array.from(io.sockets.adapter.rooms.get(code));
-        console.log("clients are " + (clients));
 
-        if(clients.length==2){
-            socket.emit("roomFull");
+        if(currRooms.includes(code)){
+            let clients=Array.from(io.sockets.adapter.rooms.get(code));
+            console.log("clients are " + (clients));
+            if(clients.length==2){
+                socket.emit("roomFull");
+            }
+            else {
+                console.log(code);
+                rooms[socket.id]=code;
+                socket.join(code);
+            }
         }
         else {
-            console.log(code);
-            rooms[socket.id]=code;
-            socket.join(code);
+            socket.emit("InvalidCode");
         }
+        
+        
+
+        
         
        
 

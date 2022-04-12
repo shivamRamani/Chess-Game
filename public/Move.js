@@ -90,6 +90,7 @@ export let resetBoard = () => {
     markedPossiblesquare = [];
     currSquare = 0;
     type = "";
+    canMakeMove=true;
 };
 
 const markPossibleMoves = (moves) => {
@@ -183,17 +184,19 @@ export const makeMove = (currPiece,target)=>{
     
 }
 
-
+let canMakeMove=true;
 function mark() {
     ClearPreviousMoves();
 
+    if(!canMakeMove){
+        return ;
+    }
     if (markedPossiblesquare.includes(this.id)) {
         let currPiece = currPosition[currSquare[0]][currSquare[1]];
         let target=this.id;
         let move=makeMove(currPiece,target);
         socket.emit("move",move);
-        
-
+        canMakeMove=false;
         markedPossiblesquare = [];
         currSquare = 0;
     } else {
@@ -271,5 +274,6 @@ const clearWinner = () => {
 
 export const handleMove=(move)=>{
     currSquare=move.currSquare;
+    canMakeMove=true;
     makeMove(move.currPiece,move.target);
 };
