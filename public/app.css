@@ -83,12 +83,19 @@ main {
 }
 
 #Reset {
-    width: 100%;
+    width: 10%;
     padding: .5rem 1rem;
     cursor: pointer;
     transition: all .3s;
     outline: none;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
+    
+
 }
 
 #Reset:hover{
@@ -198,7 +205,15 @@ main {
 }
 
 #Rotate-btn{
-    height: 50px;
-    width: 50px;
-    background: url(icons/Flipicon.jpg);
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    /* background: url(icons/Flipicon.jpg); */
+}
+
+#Rotate-btn img{
+    width: 100%;
 }

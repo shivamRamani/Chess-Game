@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port=3000;
+const port=process.env.PORT || 3000;
 const {v4 : uuidv4} = require('uuid')
 
 app.use(express.static('public'));
@@ -15,6 +15,9 @@ let roomClients={};
 io.on('connection', function(socket) { 
     console.log('new connection '+socket.id);
 
+
+
+
     socket.on('move', function(move) { 
         let roomName=rooms[socket.id];
         // console.log(socket.rooms);
@@ -24,6 +27,7 @@ io.on('connection', function(socket) {
     });
 
     socket.on("creatGame",()=>{
+
         let code=uuidv4();
         rooms[socket.id]=code;
         currRooms.push(code);
