@@ -1,6 +1,4 @@
 import { StartingPosition } from "./StartingPos.js";
-// import { io } from '/socket.io-client';
-// import { io } from "/socket.io/socket.io.js"
 import { handleMove } from "./Move.js";
 
 const reset = document.querySelector("#Reset");
@@ -8,6 +6,9 @@ const join = document.querySelector("#joinRoom");
 const creatGame = document.querySelector("#newGame");
 const Rotate = document.querySelector("#Rotate-btn");
 const roomId = document.querySelector("#roomId");
+const joinFrom= document.querySelector('.joining_form');
+const resign = document.querySelector('#resign');
+StartingPosition();
 
 const rotateBoard=()=>{
     document.getElementById('Board').classList.toggle('rotate');
@@ -41,12 +42,18 @@ join.addEventListener("click",()=>{
     
 });
 
-StartingPosition();
 
 
 reset.addEventListener("click",
 StartingPosition
 );
+
+
+resign.addEventListener('click',
+    cc
+)
+
+
 
 socket.on('move', (move)=> {
     
@@ -56,7 +63,7 @@ socket.on('move', (move)=> {
 socket.on('gameCode',(code)=>{
     console.log(code);
     console.log(roomId);
-    roomId.innerText="Your Room Code Id : " + code;
+    roomId.innerText="Your Room Code : " + code;
 })
 
 
@@ -66,6 +73,12 @@ socket.on('roomFull',()=>{
 
 socket.on("InvalidCode",()=>{
     alert("Room Does Not Exists!!!");
+})
+
+socket.on('gameStarted',()=>{
+    console.log('hiiiii');
+    joinFrom.style.display='none';
+
 })
 
 

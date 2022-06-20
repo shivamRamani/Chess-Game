@@ -34,10 +34,6 @@ main {
     color: #fff; */
 }
 
-.Clock *{
-    font-size: 0.5rem;
-    font-family: sans-serif;
-}
 
 .container {
     display: flex;
@@ -83,7 +79,9 @@ main {
 }
 
 #Reset {
-    width: 10%;
+    width: 30%;
+    height: 100%;
+
     padding: .5rem 1rem;
     cursor: pointer;
     transition: all .3s;
@@ -205,8 +203,8 @@ main {
 }
 
 #Rotate-btn{
-    height: 30px;
-    width: 30px;
+    height: 100%;
+    width: 30%;
     cursor: pointer;
     border: none;
     outline: none;
@@ -215,5 +213,35 @@ main {
 }
 
 #Rotate-btn img{
-    width: 100%;
+    width: inherit;
+}
+
+#resign{
+    width: 30%;
+    height: 100%;
+}
+
+
+.joining_form{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.controles{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.inGameButtons{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: min(60px,10vh);
+    width: auto;
 }

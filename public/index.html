@@ -9,26 +9,33 @@
     </head>
     <body>
         <main>
-            <div id="Clock" class="Clock">
-                <form>
-                    <label for="Room">Enter room id</label>
-                    <input type="text" name="name" id="inputRoomId" required>
-                    <button id ="joinRoom">Join Room</button>
-                  </form>
-                  <div id="roomId">
-                    hello
-                  </div>
-                  <button id="newGame">
-                      Creat game
-                  </button>                  
-                  <button id ="Rotate-btn">
-                    <!-- rotate -->
-                    <img src="icons/Flipicon.jpg" alt="flip-icon">
-                </button>   
-                <button id ="Reset">
-                        Reset Games
-                </button>  
-               
+            <div class="controles">
+                <form class="joining_form">
+                    <div class="joing_field">
+                        <label for="Room">Enter room id</label>
+                        <input type="text" name="name" id="inputRoomId" required>
+                        <button id ="joinRoom">Join Room</button>
+                    </div>
+                    <div id="roomId">
+                        
+                    </div>
+                    <button id="newGame">
+                        Creat game
+                    </button>                  
+                </form>
+                <div class="inGameButtons">
+                    <button id ="Rotate-btn">
+                      <img src="icons/Flipicon.jpg" alt="flip-icon">
+                    </button>   
+                    <button id ="Reset">
+                      Reset Game
+                    </button>
+                    <button id="resign">
+                        resign
+                    </button>
+                </div>
+                    
+                
             </div>
             <div id="container" class="container">
                 <div id="Board">

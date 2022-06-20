@@ -15,9 +15,6 @@ let roomClients={};
 io.on('connection', function(socket) { 
     console.log('new connection '+socket.id);
 
-
-
-
     socket.on('move', function(move) { 
         let roomName=rooms[socket.id];
         // console.log(socket.rooms);
@@ -51,19 +48,13 @@ io.on('connection', function(socket) {
                 console.log(code);
                 rooms[socket.id]=code;
                 socket.join(code);
+                io.sockets.in(rooms[socket.id]).emit('gameStarted');
             }
         }
         else {
             socket.emit("InvalidCode");
         }
         
-        
-
-        
-        
-       
-
-        // console.log(socket.rooms);
     })
 
 
