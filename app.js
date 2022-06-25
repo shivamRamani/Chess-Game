@@ -57,6 +57,12 @@ io.on('connection', function(socket) {
         
     })
 
+    socket.on('gameover',()=>{
+        let roomName=rooms[socket.id];
+        // console.log(roomName);
+        socket.to(roomName).emit('gameover');
+    })
+
 
 });
 

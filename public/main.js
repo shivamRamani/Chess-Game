@@ -8,7 +8,9 @@ const Rotate = document.querySelector("#Rotate-btn");
 const roomId = document.querySelector("#roomId");
 const joinFrom= document.querySelector('.joining_form');
 const resign = document.querySelector('#resign');
+const inGamebuttons= document.querySelector('.inGameButtons');
 StartingPosition();
+let currPalyer='white';
 
 const rotateBoard=()=>{
     document.getElementById('Board').classList.toggle('rotate');
@@ -25,19 +27,23 @@ Rotate.addEventListener("click",rotateBoard);
 export let socket=io();
 // let room='1';
 
-creatGame.addEventListener("click",()=>{
+creatGame.addEventListener("click",(event)=>{
+    event.preventDefault()
     StartingPosition();
     socket.emit("creatGame"); 
     
 });
 
-join.addEventListener("click",()=>{
+join.addEventListener("click",(event)=>{
     event.preventDefault();
     const inputRoom=document.querySelector("#inputRoomId").value;
     // console.log(roomid);
     if(inputRoom!=''){
         socket.emit("joinGame",inputRoom);
-        // rotateBoard();
+        document.querySelector("#inputRoomId").value='';
+
+        currPalyer='black'
+        rotateBoard();
     }
     
 });
@@ -49,21 +55,24 @@ StartingPosition
 );
 
 
-resign.addEventListener('click',
-    cc
-)
+resign.addEventListener('click',()=>{
+    StartingPosition();
+    joinFrom.style.display='flex';
+    inGamebuttons.style.display='none';
+    socket.emit('gameover');
+})
 
 
 
 socket.on('move', (move)=> {
-    
     handleMove(move);
 });
 
 socket.on('gameCode',(code)=>{
     console.log(code);
     console.log(roomId);
-    roomId.innerText="Your Room Code : " + code;
+    document.querySelector("#inputRoomId").value='';
+    roomId.innerText="Share this room code to start a game:\n" + code;
 })
 
 
@@ -78,8 +87,14 @@ socket.on("InvalidCode",()=>{
 socket.on('gameStarted',()=>{
     console.log('hiiiii');
     joinFrom.style.display='none';
+    inGamebuttons.style.display='flex';
 
 })
 
+socket.on('gameover',()=>{
+    alert('YOU WON');
+    joinFrom.style.display='flex';
+    inGamebuttons.style.display='none';
 
+})
   

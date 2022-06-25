@@ -7,7 +7,7 @@ body {
 main {
     height: 100vh;
     width: 100%;
-    background-color: rgb(88, 38, 65);
+    background-color: rgb(232, 172, 172);
     display: flex;
     flex-wrap: wrap;
     /* gap: 1rem; */
@@ -45,23 +45,26 @@ main {
     justify-content: center;
     background-color: aquamarine;
     border: 2px rgb(86, 40, 255);
+    border-left: 2px solid black;
 }
 
 #Board {
+    border: 3px solid black;
     position: relative;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     background-color: rgb(3, 255, 221);
-    width: min(100vh, 100vw);
-    height: min(100vh, 100vw);
-    /* padding: 10px; */
+    width: min(95vh, 95vw);
+    height: min(95vh, 95vw);
+    box-shadow: 4px 4px 5px black;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     transition: all 0.5s ease-in-out;
-    /* border: solid 2px black; */
+    
+
 }
 
 .Square {
@@ -81,19 +84,17 @@ main {
 #Reset {
     width: 30%;
     height: 100%;
-
+    display: none;
     padding: .5rem 1rem;
     cursor: pointer;
     transition: all .3s;
     outline: none;
     border: none;
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: center;
     
     
-    
-
 }
 
 #Reset:hover{
@@ -207,9 +208,9 @@ main {
     width: 30%;
     cursor: pointer;
     border: none;
-    outline: none;
-    border-radius: 2px;
-    /* background: url(icons/Flipicon.jpg); */
+    border-radius: 20px;
+    border: 2px solid black;
+    background-color: #ead8a0;
 }
 
 #Rotate-btn img{
@@ -219,14 +220,30 @@ main {
 #resign{
     width: 30%;
     height: 100%;
+    background: cover;
+    background-color: #8686ff;
+    border: 2px solid;
+    border-radius: 20px;
+
 }
 
+#roomId{
+    margin: 20px;
+    font-size: 1em;
+    text-align: center;
+}
 
 .joining_form{
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 150px;
+    margin: 10px;
+}
+
+.joining_field{
+    height: 50px;
 }
 
 .controles{
@@ -239,9 +256,35 @@ main {
 
 .inGameButtons{
     position: relative;
-    display: flex;
+    display: none;
     flex-direction: row;
     justify-content: space-around;
     height: min(60px,10vh);
     width: auto;
+}
+
+#newGame{
+    width: -moz-available;
+    height: 40px;
+    background: cover;
+    background-color: #8686ff;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+#inputRoomId{
+    height: 90%;
+    margin: 4px;
+    border-radius: 5px;
+    border: 3px solid rgb(0, 0, 0)    ;
+}
+
+#joinRoom{
+    height: 40px;
+    height: 40px;
+    background: cover;
+    background-color: #ff6868;
+    border: 2px solid;
+    border-radius: 5px;
+
 }
