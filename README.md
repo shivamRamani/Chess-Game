@@ -8,7 +8,7 @@ Visit Site: (https://chess-game-online.herokuapp.com/)
 
 
 
-## Discreption and Features
+## Description and Features
 This is a real-time chess-playing site where you can join or create a room for playing chess with friends.
 
 * Site users Socket.io to Bidirectional and low-latency communication between players.
