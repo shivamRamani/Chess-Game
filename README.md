@@ -2,7 +2,7 @@
 # Chess-Game
 A chess game application where users can play chess in real-time with another user by creating or joining in a private room.
 
-Visit Site: (https://chess-game-online.herokuapp.com/)
+Visit Site: (https://chess-game-w4il.onrender.com)
 
 
 
