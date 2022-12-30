@@ -12,6 +12,8 @@ const inGamebuttons= document.querySelector('.inGameButtons');
 StartingPosition();
 let currPalyer='white';
 
+
+
 const rotateBoard=()=>{
     document.getElementById('Board').classList.toggle('rotate');
     let icons = document.querySelectorAll('.icons');
@@ -27,6 +29,8 @@ Rotate.addEventListener("click",rotateBoard);
 export let socket=io();
 // let room='1';
 
+
+
 creatGame.addEventListener("click",(event)=>{
     event.preventDefault()
     StartingPosition();
@@ -41,7 +45,7 @@ join.addEventListener("click",(event)=>{
     if(inputRoom!=''){
         socket.emit("joinGame",inputRoom);
         document.querySelector("#inputRoomId").value='';
-
+        StartingPosition();
         currPalyer='black'
         rotateBoard();
     }
@@ -78,10 +82,14 @@ socket.on('gameCode',(code)=>{
 
 socket.on('roomFull',()=>{
     alert("room is full");
+    rotateBoard();
+
 });
 
 socket.on("InvalidCode",()=>{
     alert("Room Does Not Exists!!!");
+    rotateBoard();
+
 })
 
 socket.on('gameStarted',()=>{
@@ -97,4 +105,4 @@ socket.on('gameover',()=>{
     inGamebuttons.style.display='none';
 
 })
-  
+

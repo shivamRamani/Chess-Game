@@ -37,8 +37,8 @@ io.on('connection', function(socket) {
     });
 
     socket.on("joinGame",(code)=>{
-
-        if(currRooms.includes(code)){
+        
+        if(io.sockets.adapter.rooms.get(code)){
             let clients=Array.from(io.sockets.adapter.rooms.get(code));
             console.log("clients are " + (clients));
             if(clients.length==2){
