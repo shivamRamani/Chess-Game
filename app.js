@@ -4,9 +4,12 @@ const port=process.env.PORT || 3000;
 const {v4 : uuidv4} = require('uuid')
 
 app.use(express.static('public'));
-let http =require('http').Server(app);
+// let http =require('http').Server(app);
+const server=app.listen(port,()=>{
+    console.log("listing on "+ port);
+});
 
-const io=require('socket.io')(http);
+const io=require('socket.io')(server);
 
 const rooms={};
 const currRooms=[];
@@ -72,6 +75,3 @@ app.get('/',(req,res)=>{
     res.sendFile(__dirname+'/public/index.html');
 });
 
-http.listen(port,()=>{
-    console.log("listing on "+ port);
-});
